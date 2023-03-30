@@ -5,86 +5,86 @@
 // You can find the pages array in story.js
 // The first page is at index 0.
 
-let geekBumpsfunction = function(){
+let geekBumpsfunction = function () {
 
-let availableStories = ""
+    let availableStories = ""
 
-for (const [index, story] of storyArray.entries()) {
+    for (const [index, story] of storyArray.entries()) {
 
-    availableStories +=  `\n ${index}\. ${story.name}`
-    
-}
+        availableStories += `\n ${index}\. ${story.name}`
 
-console.log(storyArray.map((s, i)=>i + ": " + s.name + ' ' + s.missingpages).join('\n'))
+    }
 
-storyChoice = parseInt(prompt(`Chose your Adventure by entering the number of the story that you want to journey through:${availableStories} `, "0"))
+    console.log(storyArray.map((s, i) => i + ": " + s.name + ' ' + s.missingpages).join('\n'))
 
-let pages = storyArray[storyChoice].story 
-let endPages = storyArray[storyChoice].endingPages
-let copyright = storyArray[storyChoice].copyright
-let currentPage = 0
-let wholeStory = `${pages[0]}`
+    storyChoice = parseInt(prompt(`Chose your Adventure by entering the number of the story that you want to journey through:${availableStories} `, "0"))
 
-// Your Code Here.
+    let pages = storyArray[storyChoice].story
+    let endPages = storyArray[storyChoice].endingPages
+    let copyright = storyArray[storyChoice].copyright
+    let currentPage = 0
+    let wholeStory = `${pages[0]}`
+
+    // Your Code Here.
 
 
-let endChecker = function (currentPage) {
+    let endChecker = function (currentPage) {
 
-    let checker = false
+        let checker = false
 
-    for (let i = 0; i < endPages.length; i += 1) {
+        for (let i = 0; i < endPages.length; i += 1) {
 
-        if (currentPage === endPages[i]) {
-            checker = true
+            if (currentPage === endPages[i]) {
+                checker = true
+            }
+
+
+        }
+        return checker
+    }
+
+    let geekBumps = function (page) {
+
+        let temp;
+
+        do {
+            console.log(temp)
+            temp = prompt(`${pages[page]}\n Which page do you want to turn to? (please use whole intergers)`)
+        } while (!temp && temp !== null)
+
+        page = temp
+
+        if (page !== null) {
+
+            page = parseInt(page)
+
+
+
+        } else { return page }
+
+
+        wholeStory += `</p> You Chose Page: ${page}</p><p class = page>${pages[page]}<p class = pageSelector></p>`
+
+
+        if (endChecker(page) === true) {
+
+            page = null
         }
 
-        
-    }
-    return checker
-}
 
-let geekBumps = function (page) {
+        return page
 
-    let temp;
-   
-    do{
-        console.log(temp)
-        temp = prompt(`${pages[page]}\n Which page do you want to turn to? (please use whole intergers)`)
-    } while(!temp&& temp !== null)
-    
-    page = temp
-
-    if (page !== null) {
-
-        page = parseInt(page)
-
-
-
-    } else { return page }
-
-
-    wholeStory += `</p> You Chose Page: ${page}</p><p class = page>${pages[page]}<p class = pageSelector></p>`
-
-
-    if (endChecker(page) === true) {
-
-        page = null
     }
 
+    endChecker(currentPage)
 
-    return page
+    while (currentPage !== null) {
 
-}
+        currentPage = geekBumps(currentPage)
 
-endChecker(currentPage)
+    }
 
-while (currentPage !== null) {
-
-    currentPage = geekBumps(currentPage)
-
-}
-
-document.getElementById("geekBumps").innerHTML+=`${wholeStory}<br><br><b>THE END</b><p class = copywrite>${copyright}</p>`
+    document.getElementById("geekBumps").innerHTML += `${wholeStory}<br><br><b>THE END</b><p class = copywrite>${copyright}</p>`
 }
 
 geekBumpsfunction()

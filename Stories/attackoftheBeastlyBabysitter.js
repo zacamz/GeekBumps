@@ -4588,5 +4588,5 @@ e-ISBN 978-0-545-84182-5
 
 `
 let missingpages = geekBumpsMissingPages(storyAsString)
-
-storyArray.push({name:"Attack of the Beastly Babysitter",story,endingPages, copyright, missingpages})}
+let stories = new Story(name ="Attack of the Beastly Babysitter",story,endingPages, copyright, missingpages)
+storyArray.push(stories)}
